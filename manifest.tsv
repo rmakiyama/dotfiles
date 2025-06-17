@@ -1,0 +1,5 @@
+fish/config.fish	~/.config/fish/config.fish
+fish/functions/dotlink.fish	~/.config/fish/functions/dotlink.fish
+fish/functions/dotdeploy.fish	~/.config/fish/functions/dotdeploy.fish
+starship/starship.toml	~/.config/starship.toml
+ghostty/config	~/.config/ghostty/config
