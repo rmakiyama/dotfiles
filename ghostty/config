@@ -1,0 +1,19 @@
+theme = ayu mirage
+
+# window
+window-padding-x = 32
+window-padding-y = 40
+background-opacity = 0.85
+
+# font
+font-size = 15
+font-feature = -dlig
+
+# cursor
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+# macos
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = transparent
