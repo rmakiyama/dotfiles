@@ -1,0 +1,36 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs
+$character
+"""
+
+[directory]
+truncation_length = 3
+truncation_symbol = ".../"
+
+[git_branch]
+symbol = '🌱'
+format = '[$symbol$branch]($style)'
+
+[git_status]
+format = '[\[$all_status$ahead_behind\] ]($style)'
+conflicted = "≠"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕"
+untracked = "±${count}"
+stashed = "*"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "×${count}"
+
+[nodejs]
+symbol = "⬢ "
+format = '[$symbol($version) ]($style)'
+detect_extensions = ["js", "ts", "tsx"]
+detect_files = ["package.json", "tsconfig.json"]
