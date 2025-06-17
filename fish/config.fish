@@ -2,6 +2,9 @@ if not status is-interactive
     exit
 end
 
+# Environment variables
+set -gx DOTFILES_ROOT "$HOME/dev/dotfiles"
+
 # Aliases
 abbr l 'ls -AG'
 abbr configf 'code ~/.config/fish/config.fish'

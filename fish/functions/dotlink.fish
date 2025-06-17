@@ -10,7 +10,7 @@ function dotlink --description "Move a file to a dotfiles category and create a 
 
   set -l source_file $argv[1]
   set -l category $argv[2]
-  set -l dotfiles_root "$HOME/dev/dotfiles"
+  set -l dotfiles_root "$DOTFILES_ROOT"
 
   # --- Pre-checks ---
   # If the file is already a symlink, do nothing.

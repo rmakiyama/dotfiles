@@ -1,7 +1,6 @@
 function dotdeploy --description "Deploy dotfiles by creating symlinks based on the manifest."
 
-  # NOTE: Set your dotfiles repository path here.
-  set -l dotfiles_root "$HOME/dev/dotfiles"
+  set -l dotfiles_root "$DOTFILES_ROOT"
   set -l manifest_file "$dotfiles_root/manifest.tsv"
 
   if not test -e "$manifest_file"
