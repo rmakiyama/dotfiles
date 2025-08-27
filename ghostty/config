@@ -3,9 +3,10 @@ theme = ayu mirage
 # window
 window-padding-x = 32
 window-padding-y = 40
-background-opacity = 0.85
+background-opacity = 0.8
 
 # font
+font-family = "UDEV Gothic NFLG"
 font-size = 15
 font-feature = -dlig
 
@@ -14,6 +15,10 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+# keybind
+keybind = shift+enter=text:\n
+
 # macos
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = transparent
+
