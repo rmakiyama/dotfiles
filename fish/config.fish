@@ -15,4 +15,7 @@ command -q /opt/homebrew/bin/brew && /opt/homebrew/bin/brew shellenv | source
 command -q starship && starship init fish | source
 command -q ~/.local/bin/mise && ~/.local/bin/mise activate fish | source
 
-string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
+# Local config seting
+if test -f $DOTFILES_ROOT/fish/local.fish
+    source $DOTFILES_ROOT/fish/local.fish
+end
