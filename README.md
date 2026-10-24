@@ -28,6 +28,7 @@ cd ~/dev/dotfiles
 3. Runs `mise bootstrap`, which applies `mise/dotfiles.toml`:
    - installs the packages in `[bootstrap.packages]` and the tools in `[tools]`
    - sets fish as the login shell
+   - applies the macOS settings (Dock, Finder, keyboard, trackpad, screenshots)
    - links the configuration files to their proper locations
 
 ## Personal and work Macs

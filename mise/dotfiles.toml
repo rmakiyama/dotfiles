@@ -30,6 +30,36 @@ node = "lts"
 [bootstrap.user]
 login_shell = "/opt/homebrew/bin/fish"
 
+[bootstrap.macos.keyboard]
+automatic_capitalization = false
+automatic_spelling_correction = false
+
+[bootstrap.macos.defaults.NSGlobalDomain]
+# Fastest key repeat. macOS stores these as floats
+KeyRepeat = 2.0
+InitialKeyRepeat = 15.0
+# No smart quotes, smart dashes or double-space period
+NSAutomaticQuoteSubstitutionEnabled = false
+NSAutomaticDashSubstitutionEnabled = false
+NSAutomaticPeriodSubstitutionEnabled = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = false
+
+[bootstrap.macos.dock]
+autohide = true
+show_recents = false
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_extensions_warning = false
+preferred_view_style = "column"
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+# Save screenshots without the floating thumbnail
+show-thumbnail = false
+
 [dotfiles]
 "~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
 "~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
