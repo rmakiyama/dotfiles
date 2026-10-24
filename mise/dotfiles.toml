@@ -31,7 +31,7 @@ go = "latest"
 node = "lts"
 
 [bootstrap.user]
-login_shell = "/opt/homebrew/bin/fish"
+login_shell = "/bin/zsh"
 
 [bootstrap.macos.keyboard]
 automatic_capitalization = false
