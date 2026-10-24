@@ -7,7 +7,7 @@ Personal dotfiles configuration for macOS development environment.
 
 ## Features
 
-- **Fish Shell** - Modern shell with autocompletions and syntax highlighting
+- **Zsh** - No framework; autosuggestions and syntax highlighting come from Homebrew plugins
 - **Starship** - Cross-shell prompt with Git integration
 - **Ghostty** - Fast terminal emulator
 - **Mise** - Runtime version manager
@@ -28,7 +28,7 @@ cd ~/dev/dotfiles
 2. Links the mise config files and selects the profile (see below)
 3. Runs `mise bootstrap`, which applies `mise/dotfiles.toml`:
    - installs the packages in `[bootstrap.packages]` and the tools in `[tools]`
-   - sets fish as the login shell
+   - sets zsh as the login shell
    - applies the macOS settings (Dock, Finder, keyboard, trackpad, screenshots)
    - links the configuration files to their proper locations
 

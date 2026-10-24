@@ -9,7 +9,6 @@ adopt = true
 "brew:aria2" = "latest"
 "brew:bundletool" = "latest"
 "brew:direnv" = "latest"
-"brew:fish" = "latest"
 "brew:fzf" = "latest"
 "brew:gh" = "latest"
 "brew:go-task" = "latest"
@@ -31,7 +30,7 @@ go = "latest"
 node = "lts"
 
 [bootstrap.user]
-login_shell = "/opt/homebrew/bin/fish"
+login_shell = "/bin/zsh"
 
 [bootstrap.macos.keyboard]
 automatic_capitalization = false
@@ -67,7 +66,6 @@ show-thumbnail = false
 "~/.claude/CLAUDE.md" = { source = "~/dev/dotfiles/claude/CLAUDE.md" }
 "~/.claude/scripts/statusline.py" = { source = "~/dev/dotfiles/claude/statusline.py" }
 "~/.claude/settings.json" = { source = "~/dev/dotfiles/claude/settings.json" }
-"~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
 "~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
 "~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }
 "~/.zprofile" = { source = "~/dev/dotfiles/zsh/.zprofile" }
