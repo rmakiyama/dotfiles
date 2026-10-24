@@ -65,4 +65,4 @@ This moves `~/.vimrc` into `vim/`, links it back, and adds the entry to `mise/do
 
 ## Claude Code
 
-`.claude/settings.json` sets `attribution.sessionUrl` to `false`, so commits and pull requests that Claude makes in a cloud session on this repository don't carry the claude.ai session URL.
+`.claude/settings.json` sets `attribution.sessionUrl` to `false`, so commits and pull requests that Claude makes in a cloud session on this repository don't carry the claude.ai session URL. Threads in a Claude project don't read `.claude/settings.json`, so `CLAUDE.md` states the same rule as an instruction.
