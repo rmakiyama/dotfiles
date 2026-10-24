@@ -61,6 +61,9 @@ preferred_view_style = "column"
 show-thumbnail = false
 
 [dotfiles]
+"~/.claude/CLAUDE.md" = { source = "~/dev/dotfiles/claude/CLAUDE.md" }
+"~/.claude/scripts/statusline.py" = { source = "~/dev/dotfiles/claude/statusline.py" }
+"~/.claude/settings.json" = { source = "~/dev/dotfiles/claude/settings.json" }
 "~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
 "~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
 "~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }

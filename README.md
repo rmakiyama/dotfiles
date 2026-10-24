@@ -11,6 +11,7 @@ Personal dotfiles configuration for macOS development environment.
 - **Starship** - Cross-shell prompt with Git integration
 - **Ghostty** - Fast terminal emulator
 - **Mise** - Runtime version manager
+- **Claude Code** - Settings, global CLAUDE.md and status line script
 
 ## Quick Setup
 
