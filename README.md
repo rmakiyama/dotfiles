@@ -62,3 +62,7 @@ mise dot add ~/.vimrc --source ~/dev/dotfiles/vim/.vimrc --path ~/dev/dotfiles/m
 ```
 
 This moves `~/.vimrc` into `vim/`, links it back, and adds the entry to `mise/dotfiles.toml`.
+
+## Claude Code
+
+`.claude/settings.json` sets `attribution.sessionUrl` to `false`, so commits and pull requests that Claude makes in a cloud session on this repository don't carry the claude.ai session URL.
