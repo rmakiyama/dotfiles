@@ -7,7 +7,7 @@ Personal dotfiles configuration for macOS development environment.
 
 ## Features
 
-- **Fish Shell** - Modern shell with autocompletions and syntax highlighting
+- **Zsh** - No framework; autosuggestions and syntax highlighting come from Homebrew plugins
 - **Starship** - Cross-shell prompt with Git integration
 - **Ghostty** - Fast terminal emulator
 - **Mise** - Runtime version manager
