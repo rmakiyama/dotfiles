@@ -15,34 +15,50 @@ Personal dotfiles configuration for macOS development environment.
 ## Quick Setup
 
 ```bash
+xcode-select --install   # git
 git clone <your-repo-url> ~/dev/dotfiles
 cd ~/dev/dotfiles
-# If you cloned to a different path, update DOTFILES_ROOT in fish/config.fish first
-chmod +x setup.sh
-./setup.sh
+./setup.sh personal   # or: ./setup.sh work
 ```
 
 ## What the setup script does
 
-1. Installs Homebrew (if not present)
-2. Installs required tools: fish, starship, mise, ghostty, etc...
-3. Sets fish as the default shell
-4. Deploys configuration files to their proper locations
+1. Installs Homebrew and mise (if not present)
+2. Links the mise config files and selects the profile (see below)
+3. Runs `mise bootstrap`, which applies `mise/dotfiles.toml`:
+   - installs the packages in `[bootstrap.packages]` and the tools in `[tools]`
+   - sets fish as the login shell
+   - applies the macOS settings (Dock, Finder, keyboard, trackpad, screenshots)
+   - links the configuration files to their proper locations
 
-## Manual Deployment
+## Personal and work Macs
 
-If you need to redeploy configurations after making changes:
+| File | Loaded on | Linked as |
+| --- | --- | --- |
+| `mise/dotfiles.toml` | every Mac | `~/.config/mise/conf.d/dotfiles.toml` |
+| `mise/personal.toml` | personal Macs | `~/.config/mise/config.personal.toml` |
+| `mise/work.toml` | work Macs (not created yet) | `~/.config/mise/config.work.toml` |
 
-```fish
-dotdeploy
+`~/.config/mise/miserc.local.toml` selects the profile on each Mac with `env = ["personal"]` or `env = ["work"]`. `setup.sh` writes it on the first run.
+
+Tools you only want on one Mac go in `~/.config/mise/config.toml`, which is where `mise use -g` writes and is not part of this repository.
+
+## Day-to-day
+
+After changing `mise/dotfiles.toml` or pulling changes:
+
+```bash
+mise bootstrap --dry-run   # preview
+mise bootstrap             # apply only what differs
+mise bootstrap status      # compare the config with this machine
 ```
 
-This creates symlinks based on `manifest.tsv`. Existing files are backed up as `.bak` files, and existing symlinks are skipped.
+`mise dot apply` applies only the dotfiles. If a real file already exists where a link should go, mise stops instead of overwriting it. Check it with `mise dot diff`, then rerun with `--force` to replace it (the existing file is not backed up).
 
 ## Adding New Files
 
-```fish
-dotlink ~/.vimrc vim
+```bash
+mise dot add ~/.vimrc --source ~/dev/dotfiles/vim/.vimrc --path ~/dev/dotfiles/mise/dotfiles.toml
 ```
 
-This moves `~/.vimrc` to `vim/` directory, creates a symlink, and updates `manifest.tsv`.
+This moves `~/.vimrc` into `vim/`, links it back, and adds the entry to `mise/dotfiles.toml`.

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 # Colors for output
 RED='\033[0;31m'
@@ -26,6 +26,13 @@ log_error() {
     echo -e "${RED}❌ $1${NC}"
 }
 
+# Usage: ./setup.sh personal|work
+PROFILE="${1:-}"
+if [[ "$PROFILE" != "personal" && "$PROFILE" != "work" ]]; then
+    echo "Usage: $0 personal|work" >&2
+    exit 1
+fi
+
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_ROOT="$SCRIPT_DIR"
@@ -37,6 +44,25 @@ log_info "Dotfiles directory: $DOTFILES_ROOT"
 if [[ "$OSTYPE" != "darwin"* ]]; then
     log_error "This script is designed for macOS only."
     exit 1
+fi
+
+# mise/dotfiles.toml links files from ~/dev/dotfiles
+if [[ "$DOTFILES_ROOT" != "$HOME/dev/dotfiles" ]]; then
+    log_error "Clone this repository to ~/dev/dotfiles and rerun."
+    exit 1
+fi
+
+# Select which mise/<profile>.toml this Mac loads
+miserc="$HOME/.config/mise/miserc.local.toml"
+if [[ -e "$miserc" ]]; then
+    if ! grep -q "\"$PROFILE\"" "$miserc"; then
+        log_error "$miserc selects another profile. Add \"$PROFILE\" to its env list or pass the right profile."
+        exit 1
+    fi
+else
+    mkdir -p "$(dirname "$miserc")"
+    echo "env = [\"$PROFILE\"]" > "$miserc"
+    log_success "Selected the $PROFILE profile in $miserc"
 fi
 
 # Install Homebrew if not present
@@ -56,72 +82,45 @@ else
     log_success "Homebrew is already installed"
 fi
 
-# Install required tools
-log_info "Installing required tools..."
-
-tools=("fish" "starship" "mise")
-for tool in "${tools[@]}"; do
-    if ! command -v "$tool" &> /dev/null; then
-        log_info "Installing $tool..."
-        brew install "$tool"
-        log_success "$tool installed"
-    else
-        log_success "$tool is already installed"
-    fi
-done
-
-# Install ghostty if not present
-if ! command -v ghostty &> /dev/null; then
-    log_info "Installing ghostty..."
-    if brew list --cask ghostty &> /dev/null; then
-        log_success "ghostty is already installed"
-    else
-        brew install --cask ghostty
-        log_success "ghostty installed"
-    fi
+# Install mise
+if command -v mise &> /dev/null; then
+    MISE="$(command -v mise)"
+    log_success "mise is already installed"
 else
-    log_success "ghostty is already installed"
+    log_info "Installing mise..."
+    curl -fsSL https://mise.run | sh
+    MISE="$HOME/.local/bin/mise"
+    log_success "mise installed"
 fi
 
-# Add fish to valid login shells if not already present
-if ! grep -q "$(which fish)" /etc/shells; then
-    log_info "Adding fish to valid login shells..."
-    echo "$(which fish)" | sudo tee -a /etc/shells
-    log_success "Fish added to valid login shells"
-fi
+# Link a file in this repository into mise's global config directory
+link_mise_config() {
+    local source="$1" link="$2"
+    mkdir -p "$(dirname "$link")"
+    if [[ -e "$link" && ! -L "$link" ]]; then
+        log_error "$link already exists and is not a symlink. Move it aside and rerun."
+        exit 1
+    fi
+    ln -sfn "$source" "$link"
+    log_success "Linked $link"
+}
 
-# Change default shell to fish
-if [[ "$SHELL" != "$(which fish)" ]]; then
-    log_info "Changing default shell to fish..."
-    chsh -s "$(which fish)"
-    log_success "Default shell changed to fish"
-    log_warning "Please restart your terminal or run 'exec fish' to use the new shell"
+link_mise_config "$DOTFILES_ROOT/mise/dotfiles.toml" "$HOME/.config/mise/conf.d/dotfiles.toml"
+
+if [[ -f "$DOTFILES_ROOT/mise/$PROFILE.toml" ]]; then
+    link_mise_config "$DOTFILES_ROOT/mise/$PROFILE.toml" "$HOME/.config/mise/config.$PROFILE.toml"
 else
-    log_success "Fish is already the default shell"
+    log_warning "mise/$PROFILE.toml does not exist yet. Only the shared config is applied."
 fi
 
-# Deploy dotfiles using the fish function
-log_info "Deploying dotfiles..."
-
-# Create a temporary fish script to run dotdeploy
-temp_fish_script=$(mktemp)
-cat > "$temp_fish_script" << EOF
-set -gx DOTFILES_ROOT "$DOTFILES_ROOT"
-source "$DOTFILES_ROOT/fish/functions/dotdeploy.fish"
-dotdeploy
-EOF
-
-# Run the fish script
-fish "$temp_fish_script"
-rm "$temp_fish_script"
-
-log_success "Dotfiles deployed successfully"
+# Apply packages, tools, login shell and dotfiles
+log_info "Running mise bootstrap..."
+"$MISE" bootstrap
 
 echo ""
 log_success "🎉 Setup completed successfully!"
 echo ""
 log_info "Next steps:"
 echo "  1. Restart your terminal or run 'exec fish'"
-echo "  2. Verify your setup with 'fish --version' and 'starship --version'"
-echo "  3. Enjoy your new development environment!"
+echo "  2. Check the state with 'mise bootstrap status'"
 echo ""

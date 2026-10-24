@@ -1,0 +1,4 @@
+# Personal Macs only. setup.sh links this to ~/.config/mise/config.personal.toml
+[tools]
+goreleaser = "latest"
+"npm:firebase-tools" = "latest"

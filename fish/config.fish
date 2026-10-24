@@ -13,7 +13,8 @@ abbr configs 'code ~/.config/starship.toml'
 
 command -q /opt/homebrew/bin/brew && /opt/homebrew/bin/brew shellenv | source
 command -q starship && starship init fish | source
-command -q ~/.local/bin/mise && ~/.local/bin/mise activate fish | source
+fish_add_path -g ~/.local/bin
+command -q mise && mise activate fish | source
 
 # Local config seting
 if test -f $DOTFILES_ROOT/fish/local.fish

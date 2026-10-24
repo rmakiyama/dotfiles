@@ -1,0 +1,70 @@
+# Shared by every Mac. setup.sh links this to ~/.config/mise/conf.d/dotfiles.toml
+min_version = "2026.10.4"
+
+[bootstrap.brew]
+# Take over apps that are already installed instead of replacing them
+adopt = true
+
+[bootstrap.packages]
+"brew:aria2" = "latest"
+"brew:bundletool" = "latest"
+"brew:direnv" = "latest"
+"brew:fish" = "latest"
+"brew:gh" = "latest"
+"brew:go-task" = "latest"
+"brew:kdoctor" = "latest"
+"brew:mint" = "latest"
+"brew:mockery" = "latest"
+"brew:starship" = "latest"
+"brew:tree" = "latest"
+"brew:uv" = "latest"
+"brew:xcodes" = "latest"
+"brew-cask:bruno" = "latest"
+"brew-cask:gcloud-cli" = "latest"
+"brew-cask:ghostty" = "latest"
+
+[tools]
+go = "latest"
+node = "lts"
+
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/fish"
+
+[bootstrap.macos.keyboard]
+automatic_capitalization = false
+automatic_spelling_correction = false
+
+[bootstrap.macos.defaults.NSGlobalDomain]
+# Fastest key repeat. macOS stores these as floats
+KeyRepeat = 2.0
+InitialKeyRepeat = 15.0
+# No smart quotes, smart dashes or double-space period
+NSAutomaticQuoteSubstitutionEnabled = false
+NSAutomaticDashSubstitutionEnabled = false
+NSAutomaticPeriodSubstitutionEnabled = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = false
+
+[bootstrap.macos.dock]
+autohide = true
+show_recents = false
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_extensions_warning = false
+preferred_view_style = "column"
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+# Save screenshots without the floating thumbnail
+show-thumbnail = false
+
+[dotfiles]
+"~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
+"~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
+"~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }
+
+[tasks.bootstrap]
+# Install Claude Code with its own installer, which keeps it up to date
+run = "command -v claude >/dev/null || curl -fsSL https://claude.ai/install.sh | bash"
