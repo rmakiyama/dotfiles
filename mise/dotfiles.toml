@@ -6,8 +6,20 @@ min_version = "2026.10.4"
 adopt = true
 
 [bootstrap.packages]
+"brew:aria2" = "latest"
+"brew:bundletool" = "latest"
+"brew:direnv" = "latest"
 "brew:fish" = "latest"
+"brew:gh" = "latest"
+"brew:go-task" = "latest"
+"brew:kdoctor" = "latest"
+"brew:mint" = "latest"
+"brew:mockery" = "latest"
 "brew:starship" = "latest"
+"brew:tree" = "latest"
+"brew:uv" = "latest"
+"brew:xcodes" = "latest"
+"brew-cask:bruno" = "latest"
 "brew-cask:gcloud-cli" = "latest"
 "brew-cask:ghostty" = "latest"
 
