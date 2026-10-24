@@ -10,6 +10,7 @@ adopt = true
 "brew:bundletool" = "latest"
 "brew:direnv" = "latest"
 "brew:fish" = "latest"
+"brew:fzf" = "latest"
 "brew:gh" = "latest"
 "brew:go-task" = "latest"
 "brew:kdoctor" = "latest"
@@ -19,6 +20,8 @@ adopt = true
 "brew:tree" = "latest"
 "brew:uv" = "latest"
 "brew:xcodes" = "latest"
+"brew:zsh-autosuggestions" = "latest"
+"brew:zsh-syntax-highlighting" = "latest"
 "brew-cask:bruno" = "latest"
 "brew-cask:gcloud-cli" = "latest"
 "brew-cask:ghostty" = "latest"
@@ -67,6 +70,8 @@ show-thumbnail = false
 "~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
 "~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
 "~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }
+"~/.zprofile" = { source = "~/dev/dotfiles/zsh/.zprofile" }
+"~/.zshrc" = { source = "~/dev/dotfiles/zsh/.zshrc" }
 
 [tasks.bootstrap]
 # Install Claude Code with its own installer, which keeps it up to date

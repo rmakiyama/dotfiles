@@ -1,2 +1,4 @@
 # fish local config
 fish/local.fish
+# zsh local config
+zsh/local.zsh
