@@ -1,0 +1,25 @@
+# Shared by every Mac. setup.sh links this to ~/.config/mise/conf.d/dotfiles.toml
+min_version = "2026.10.4"
+
+[bootstrap.brew]
+# Take over apps that are already installed instead of replacing them
+adopt = true
+
+[bootstrap.packages]
+"brew:fish" = "latest"
+"brew:starship" = "latest"
+"brew-cask:gcloud-cli" = "latest"
+"brew-cask:ghostty" = "latest"
+
+[tools]
+go = "latest"
+node = "lts"
+
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/fish"
+
+[dotfiles]
+"~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
+"~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
+"~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }
+
