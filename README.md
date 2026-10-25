@@ -11,6 +11,7 @@ Personal dotfiles configuration for macOS development environment.
 - **Starship** - Cross-shell prompt with Git integration
 - **Ghostty** - Fast terminal emulator
 - **Mise** - Runtime version manager
+- **Git** - Shared settings in `~/.config/git/config`. `user` and git-lfs settings stay in `~/.gitconfig` on each Mac
 - **Claude Code** - Settings, global CLAUDE.md and status line script
 
 ## Quick Setup
