@@ -68,6 +68,7 @@ show-thumbnail = false
 "~/.claude/scripts/statusline.py" = { source = "~/dev/dotfiles/claude/statusline.py" }
 "~/.claude/settings.json" = { source = "~/dev/dotfiles/claude/settings.json" }
 "~/.config/fish/config.fish" = { source = "~/dev/dotfiles/fish/config.fish" }
+"~/.config/git/config" = { source = "~/dev/dotfiles/git/config" }
 "~/.config/ghostty/config" = { source = "~/dev/dotfiles/ghostty/config" }
 "~/.config/starship.toml" = { source = "~/dev/dotfiles/starship/starship.toml" }
 "~/.zprofile" = { source = "~/dev/dotfiles/zsh/.zprofile" }

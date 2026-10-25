@@ -1,0 +1,26 @@
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[pull]
+	ff = only
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+[rerere]
+	enabled = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[commit]
+	verbose = true
+[help]
+	autocorrect = prompt
